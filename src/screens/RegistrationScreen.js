@@ -140,7 +140,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
   },
-  wrapImg: { position: "relative" },
+  wrapImg: {
+    position: "relative",
+  },
   avatar: {
     position: "absolute",
     width: 120,
@@ -155,7 +157,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 25,
     height: 25,
-
     top: -70,
     marginStart: 240,
   },

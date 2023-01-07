@@ -31,8 +31,8 @@ export default function App() {
         style={styles.image}
         source={require("./assets/image/bg-image.png")}
       >
-        <RegistrationScreen />
-        {/* <LoginScreen /> */}
+        {/* <RegistrationScreen /> */}
+        <LoginScreen />
       </ImageBackground>
     </View>
   );
