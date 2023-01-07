@@ -1,16 +1,17 @@
-import React, { useState, useCallback } from "react";
-import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+
 import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
   TextInput,
   TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
+  Image,
 } from "react-native";
 
 const initialState = {
@@ -38,7 +39,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.wrap}>
       <TouchableWithoutFeedback onPress={keyboardHide}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -50,7 +51,15 @@ export default function LoginScreen() {
               paddingBottom: isShowKeyboard ? 20 : 78,
             }}
           >
-            <View style={styles.header}>
+            <View style={styles.wrapImg}>
+              <View style={styles.avatar}></View>
+              <Image
+                style={styles.icon}
+                source={require("../../assets/image/add-image.png")}
+              />
+            </View>
+
+            <View>
               <Text style={styles.title}>Войти</Text>
             </View>
             <View>
@@ -100,7 +109,7 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wrap: {
     flex: 1,
     resizeMode: "cover",
   },
@@ -117,7 +126,26 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
   },
-
+  wrapImg: {
+    position: "relative",
+  },
+  avatar: {
+    position: "absolute",
+    width: 120,
+    height: 120,
+    backgroundColor: "#F6F6F6",
+    top: -150,
+    borderRadius: 16,
+    marginStart: 136,
+  },
+  icon: {
+    zIndex: 2,
+    position: "absolute",
+    width: 25,
+    height: 25,
+    top: -70,
+    marginStart: 240,
+  },
   title: {
     marginBottom: 32,
     marginHorizontal: 16,

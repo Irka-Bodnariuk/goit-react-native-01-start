@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  //   ImageBackground,
   TextInput,
   TouchableOpacity,
   Platform,
@@ -12,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  Image,
 } from "react-native";
 
 const initialState = {
@@ -52,9 +52,18 @@ export default function RegistrationScreen() {
               paddingBottom: isShowKeyboard ? 20 : 78,
             }}
           >
+            <View style={styles.wrapImg}>
+              <View style={styles.avatar}></View>
+              <Image
+                style={styles.icon}
+                source={require("../../assets/image/add-image.png")}
+              />
+            </View>
+
             <View>
               <Text style={styles.title}>Регистрация</Text>
             </View>
+
             <View>
               <TextInput
                 style={styles.input}
@@ -130,6 +139,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
+  },
+  wrapImg: {
+    position: "relative",
+  },
+  avatar: {
+    position: "absolute",
+    width: 120,
+    height: 120,
+    backgroundColor: "#F6F6F6",
+    top: -150,
+    borderRadius: 16,
+    marginStart: 136,
+  },
+  icon: {
+    zIndex: 2,
+    position: "absolute",
+    width: 25,
+    height: 25,
+    top: -70,
+    marginStart: 240,
   },
 
   title: {
