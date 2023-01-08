@@ -28,9 +28,9 @@ export default function LoginScreen() {
     Keyboard.dismiss();
   };
   const onSubmit = () => {
-    const { login, email, password } = state;
+    const { email, password } = state;
 
-    if (!login || !email || !password) {
+    if (!email || !password) {
       return Alert.alert("Error", "Fields can't be empty");
     }
     console.log(state);
