@@ -42,7 +42,7 @@ export default function RegistrationScreen({ navigation }) {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
   };
-  const navigateHome = () => navigation.navigate("Home");
+
   const onSubmit = () => {
     const { login, email, password } = state;
 
@@ -53,7 +53,7 @@ export default function RegistrationScreen({ navigation }) {
     keyboardHide();
     setState(initialState);
     setSecureText(true);
-    navigateHome();
+    navigation.navigate("Home");
   };
 
   return (
@@ -258,14 +258,5 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontSize: 16,
     fontFamily: "Roboto-Regulat",
-  },
-  buttonNav: {
-    // marginHorizontal: 16,
-    backgroundColor: "transparent",
-    // height: 51,
-    // borderRadius: 100,
-    // marginTop: 43,
-    // justifyContent: "center",
-    alignItems: "center",
   },
 });

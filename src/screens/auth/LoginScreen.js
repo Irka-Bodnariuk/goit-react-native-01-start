@@ -42,7 +42,6 @@ export default function LoginScreen({ navigation }) {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
   };
-  const navigateHome = () => navigation.navigate("Home");
 
   const onSubmit = () => {
     const { email, password } = state;
@@ -54,7 +53,7 @@ export default function LoginScreen({ navigation }) {
     keyboardHide();
     setState(initialState);
     setSecureText(true);
-    navigateHome();
+    navigation.navigate("Home");
   };
 
   return (
@@ -142,12 +141,6 @@ export default function LoginScreen({ navigation }) {
                         Нет аккаунта? Зарегистрироваться
                       </Text>
                     </TouchableOpacity>
-                    {/* <Button
-                      title="Go to Home"
-                      onPress={() =>
-                        navigation.navigate("Home")
-                      }
-                    /> */}
                   </View>
                 </View>
               </View>

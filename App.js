@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
-import { Button, StyleSheet, View } from "react-native";
-import { MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
+import { StyleSheet, View } from "react-native";
 
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
@@ -10,8 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import LoginScreen from "./src/screens/auth/LoginScreen";
 import RegistrationScreen from "./src/screens/auth/RegistrationScreen";
-import Home from "./src/screens/auth/Home";
-// import { useRoute } from "./rourer";
+import Home from "./src/components/Home";
 
 const MainStack = createStackNavigator();
 
@@ -22,7 +20,6 @@ export default function App() {
     "Roboto-Regulat": require("./assets/fonts/Roboto/Roboto-Regular.ttf"),
     "Roboto-Medium": require("./assets/fonts/Roboto/Roboto-Medium.ttf"),
   });
-  // const routing = useRoute(true); //null
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -49,29 +46,7 @@ export default function App() {
             component={LoginScreen}
           />
           <MainStack.Screen
-            options={{
-              headerShown: false,
-              // title: "Публикации",
-              // headerTitleAlign: "center",
-              // headerStyle: {
-              //   borderBottomWidth: 1,
-              //   borderBottomColor: "rgba(0, 0, 0, 0.3)",
-              // },
-              // headerTintColor: "#212121",
-              // headerTitleStyle: {
-              //   fontFamily: "Roboto-Medium",
-              //   fontSize: 17,
-              // },
-              // headerRight: () => (
-              //   <MaterialIcons
-              //     style={styles.homeIcon}
-              //     onPress={() => alert("This is a button!")}
-              //     name="logout"
-              //     size={24}
-              //     color="#BDBDBD"
-              //   />
-              // ),
-            }}
+            options={{ headerShown: false }}
             name="Home"
             component={Home}
           />
@@ -85,8 +60,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  homeIcon: {
-    marginRight: 16,
   },
 });
