@@ -24,6 +24,7 @@ const initialState = {
 export default function LoginScreen({ navigation }) {
   const [state, setState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [secureText, setSecureText] = useState(true);
 
   const [dimensions, setDimensions] = useState(
     Dimensions.get("window").width - 16 * 2
@@ -41,6 +42,7 @@ export default function LoginScreen({ navigation }) {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
   };
+  const navigateHome = () => navigation.navigate("Home");
 
   const onSubmit = () => {
     const { email, password } = state;
@@ -51,6 +53,8 @@ export default function LoginScreen({ navigation }) {
     console.log(state);
     keyboardHide();
     setState(initialState);
+    setSecureText(true);
+    navigateHome();
   };
 
   return (
@@ -103,7 +107,7 @@ export default function LoginScreen({ navigation }) {
                     <TextInput
                       style={styles.input}
                       textAlign={"left"}
-                      secureTextEntry={true}
+                      secureTextEntry={secureText}
                       placeholder={"Пароль"}
                       onFocus={() => setIsShowKeyboard(true)}
                       value={state.password}
@@ -114,7 +118,14 @@ export default function LoginScreen({ navigation }) {
                         }))
                       }
                     />
-                    <Text style={styles.password}>Показать</Text>
+                    <Text
+                      style={styles.password}
+                      onPress={() =>
+                        secureText ? setSecureText(false) : setSecureText(true)
+                      }
+                    >
+                      Показать
+                    </Text>
                   </View>
                   <TouchableOpacity
                     style={styles.btn}
@@ -131,6 +142,12 @@ export default function LoginScreen({ navigation }) {
                         Нет аккаунта? Зарегистрироваться
                       </Text>
                     </TouchableOpacity>
+                    {/* <Button
+                      title="Go to Home"
+                      onPress={() =>
+                        navigation.navigate("Home")
+                      }
+                    /> */}
                   </View>
                 </View>
               </View>

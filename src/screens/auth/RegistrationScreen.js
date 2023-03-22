@@ -25,6 +25,7 @@ const initialState = {
 export default function RegistrationScreen({ navigation }) {
   const [state, setState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [secureText, setSecureText] = useState(true);
 
   const [dimensions, setDimensions] = useState(
     Dimensions.get("window").width - 16 * 2
@@ -41,6 +42,7 @@ export default function RegistrationScreen({ navigation }) {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
   };
+  const navigateHome = () => navigation.navigate("Home");
   const onSubmit = () => {
     const { login, email, password } = state;
 
@@ -50,6 +52,8 @@ export default function RegistrationScreen({ navigation }) {
     console.log(state);
     keyboardHide();
     setState(initialState);
+    setSecureText(true);
+    navigateHome();
   };
 
   return (
@@ -118,7 +122,7 @@ export default function RegistrationScreen({ navigation }) {
                     <TextInput
                       style={styles.input}
                       textAlign={"left"}
-                      secureTextEntry={true}
+                      secureTextEntry={secureText}
                       placeholder={"Пароль"}
                       onFocus={() => setIsShowKeyboard(true)}
                       value={state.password}
@@ -129,7 +133,14 @@ export default function RegistrationScreen({ navigation }) {
                         }))
                       }
                     />
-                    <Text style={styles.password}>Показать</Text>
+                    <Text
+                      style={styles.password}
+                      onPress={() =>
+                        secureText ? setSecureText(false) : setSecureText(true)
+                      }
+                    >
+                      Показать
+                    </Text>
                   </View>
                   <TouchableOpacity
                     style={styles.btn}
