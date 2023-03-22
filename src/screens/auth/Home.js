@@ -5,8 +5,6 @@ import PostsScreen from "../mainScreen/PostsScreen";
 import CreatePostsScreen from "../mainScreen/CreatePostsScreen";
 import ProfileScreen from "../mainScreen/ProfileScreen";
 import { Feather } from "@expo/vector-icons";
-// import { Ionicons } from "@expo/vector-icons";
-// import { MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
 
 const Tabs = createBottomTabNavigator();
 
@@ -37,6 +35,26 @@ const Home = () => {
     >
       <Tabs.Screen
         options={{
+          // title: "Публикации",
+          // headerTitleAlign: "center",
+          // headerStyle: {
+          //   borderBottomWidth: 1,
+          //   borderBottomColor: "rgba(0, 0, 0, 0.3)",
+          // },
+          // headerTintColor: "#212121",
+          // headerTitleStyle: {
+          //   fontFamily: "Roboto-Medium",
+          //   fontSize: 17,
+          // },
+          headerRight: ({ focused, size, color }) => (
+            <Feather
+              style={{ marginRight: 16 }}
+              onPress={() => alert("This is a button!")}
+              name="log-out"
+              size={size}
+              color={color}
+            />
+          ),
           tabBarIcon: ({ focused, size, color }) => (
             <Feather name="grid" size={size} color={color} />
           ),
