@@ -12,7 +12,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  Image,
   Dimensions,
 } from "react-native";
 
@@ -51,9 +50,12 @@ export default function LoginScreen({ navigation }) {
     }
     console.log(state);
     keyboardHide();
-    setState(initialState);
+    navigation.navigate("Home", {
+      screen: "ProfileScreen" && "PostsScreen",
+      params: { email },
+    });
     setSecureText(true);
-    navigation.navigate("Home");
+    setState(initialState);
   };
 
   return (
@@ -76,14 +78,6 @@ export default function LoginScreen({ navigation }) {
                     width: dimensions,
                   }}
                 >
-                  <View style={styles.wrapImg}>
-                    <View style={styles.avatar}></View>
-                    <Image
-                      style={styles.icon}
-                      source={require("../../../assets/image/add-image.png")}
-                    />
-                  </View>
-
                   <View>
                     <Text style={styles.title}>Войти</Text>
                   </View>
@@ -177,30 +171,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   form: {
-    paddingTop: 92,
+    paddingTop: 32,
     position: "relative",
     justifyContent: "center",
   },
   wrapImg: {
     position: "relative",
   },
-  avatar: {
-    position: "absolute",
-    width: 120,
-    height: 120,
-    backgroundColor: "#F6F6F6",
-    top: -150,
-    borderRadius: 16,
-    marginStart: 136,
-  },
-  icon: {
-    zIndex: 2,
-    position: "absolute",
-    width: 25,
-    height: 25,
-    top: -70,
-    marginStart: 240,
-  },
+
   title: {
     marginBottom: 32,
     textAlign: "center",
@@ -217,7 +195,7 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 16,
     fontSize: 16,
-    fontFamily: "Roboto-Regulat",
+    fontFamily: "Roboto-Regular",
     color: "#212121",
   },
   password: {
@@ -236,12 +214,12 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 16,
     color: "#fff",
-    fontFamily: "Roboto-Regulat",
+    fontFamily: "Roboto-Regular",
   },
   text: {
     color: "#1B4371",
     marginTop: 16,
     fontSize: 16,
-    fontFamily: "Roboto-Regulat",
+    fontFamily: "Roboto-Regular",
   },
 });

@@ -17,8 +17,10 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    "Roboto-Regulat": require("./assets/fonts/Roboto/Roboto-Regular.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Roboto/Roboto-Regular.ttf"),
     "Roboto-Medium": require("./assets/fonts/Roboto/Roboto-Medium.ttf"),
+    "Roboto-Bold": require("./assets/fonts/Roboto/Roboto-Bold.ttf"),
+    "Roboto-Black": require("./assets/fonts/Roboto/Roboto-Black.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {

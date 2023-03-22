@@ -42,6 +42,26 @@ const Home = ({ navigation }) => {
 
       <Tabs.Screen
         options={{
+          title: "Создать публикацию",
+          headerTitleAlign: "center",
+          headerStyle: {
+            borderBottomWidth: 1,
+            borderBottomColor: "rgba(0, 0, 0, 0.3)",
+          },
+          headerTintColor: "#212121",
+          headerTitleStyle: {
+            fontFamily: "Roboto-Medium",
+            fontSize: 17,
+          },
+          headerLeft: () => (
+            <Feather
+              style={{ marginLeft: 16 }}
+              name="arrow-left"
+              size={24}
+              color={"#BDBDBD"}
+              onPress={() => navigation.navigate("Login")}
+            />
+          ),
           tabBarIcon: () => (
             <Feather
               style={{
@@ -64,6 +84,7 @@ const Home = ({ navigation }) => {
 
       <Tabs.Screen
         options={{
+          headerShown: false,
           tabBarIcon: () => <Feather name="user" size={24} color={"#212121"} />,
         }}
         name="ProfileScreen"

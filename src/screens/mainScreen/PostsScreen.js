@@ -1,10 +1,22 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 
-const PostsScreen = () => {
+const PostsScreen = ({ navigation, route }) => {
+  // console.log(navigation);
+  const { email, image } = route.params;
+  const name = "Natali Romanova";
   return (
     <View style={styles.container}>
-      <Text>PostsScreen</Text>
+      <View style={styles.wrapImg}>
+        <Image
+          style={styles.photo}
+          source={require("../../../assets/image/Add-photo.png")}
+        />
+        <View>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.email}>{email}</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -12,8 +24,37 @@ const PostsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
+    backgroundColor: "#fff",
+  },
+  wrapImg: {
+    marginVertical: 32,
+    marginHorizontal: 16,
+    flexDirection: "row",
+    // justifyContent: "flex-start",
     alignItems: "center",
+  },
+  photo: {
+    width: 60,
+    height: 60,
+    backgroundColor: "#F6F6F6",
+    borderRadius: 16,
+    marginRight: 8,
+  },
+  name: {
+    // marginBottom: 32,
+
+    color: "#212121",
+    fontSize: 13,
+    fontFamily: "Roboto-Bold",
+  },
+  email: {
+    // marginBottom: 32,
+
+    color: "#212121",
+    fontSize: 13,
+    fontFamily: "Roboto-Regular",
   },
 });
 export default PostsScreen;
