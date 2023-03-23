@@ -57,7 +57,7 @@ export default function RegistrationScreen({ navigation }) {
     setState(initialState);
     setSecureText(true);
     navigation.navigate("Home", {
-      screen: "ProfileScreen" && "PostsScreen",
+      // screen: "ProfileScreen" && "PostsScreen",
       params: { email, image },
     });
   };

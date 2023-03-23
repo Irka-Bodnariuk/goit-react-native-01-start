@@ -2,16 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
 const PostsScreen = ({ navigation, route }) => {
-  // console.log(navigation);
-  const { email, image } = route.params;
+  const email = "email@mail.com";
   const name = "Natali Romanova";
+  const image = "../../../assets/image/Add-photo.png";
+
   return (
     <View style={styles.container}>
       <View style={styles.wrapImg}>
-        <Image
-          style={styles.photo}
-          source={require("../../../assets/image/Add-photo.png")}
-        />
+        <Image style={styles.photo} source={require(image)} />
         <View>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.email}>{email}</Text>

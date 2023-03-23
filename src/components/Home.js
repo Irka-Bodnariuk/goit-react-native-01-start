@@ -8,9 +8,49 @@ import { Feather } from "@expo/vector-icons";
 
 const Tabs = createBottomTabNavigator();
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, route }) => {
   return (
-    <Tabs.Navigator screenOptions={{ tabBarShowLabel: false }}>
+    <Tabs.Navigator
+      // screenOptions={{ tabBarShowLabel: false }}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          // let iconName;
+
+          if (route.name === "PostsScreen") {
+            return (
+              focused && <Feather name="grid" size={24} color={"#212121"} />
+            );
+          } else if (route.name === "CreatePostsScreen") {
+            return (
+              !focused && (
+                <Feather
+                  style={{
+                    width: 70,
+                    height: 40,
+                    borderRadius: 20,
+                    backgroundColor: "#FF6C00",
+                    textAlignVertical: "center",
+                    textAlign: "center",
+                  }}
+                  name="plus"
+                  size={24}
+                  color={"#fff"}
+                />
+              )
+            );
+          } else if (route.name === "ProfileScreen") {
+            return (
+              !focused && <Feather name="user" size={24} color={"#212121"} />
+            );
+          }
+        },
+        tabBarShowLabel: false,
+      })}
+      tabBarOptions={{
+        activeTintColor: "#212121",
+        inactiveTintColor: "#fff",
+      }}
+    >
       <Tabs.Screen
         options={{
           title: "Публикации",
@@ -33,12 +73,10 @@ const Home = ({ navigation }) => {
               onPress={() => navigation.navigate("Login")}
             />
           ),
-
-          tabBarIcon: () => <Feather name="grid" size={24} color={"#212121"} />,
         }}
         name="PostsScreen"
         component={PostsScreen}
-      />
+      ></Tabs.Screen>
 
       <Tabs.Screen
         options={{
@@ -59,24 +97,10 @@ const Home = ({ navigation }) => {
               name="arrow-left"
               size={24}
               color={"#BDBDBD"}
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => navigation.navigate("PostsScreen")}
             />
           ),
-          tabBarIcon: () => (
-            <Feather
-              style={{
-                width: 70,
-                height: 40,
-                borderRadius: 100,
-                backgroundColor: "#FF6C00",
-                textAlign: "center",
-                textAlignVertical: "center",
-              }}
-              name="plus"
-              size={24}
-              color={"#fff"}
-            />
-          ),
+          tabBarStyle: { display: "none" }, // Для зникнення нижньої навігації
         }}
         name="CreatePostsScreen"
         component={CreatePostsScreen}
@@ -85,7 +109,7 @@ const Home = ({ navigation }) => {
       <Tabs.Screen
         options={{
           headerShown: false,
-          tabBarIcon: () => <Feather name="user" size={24} color={"#212121"} />,
+          tabBarStyle: { display: "none" },
         }}
         name="ProfileScreen"
         component={ProfileScreen}
