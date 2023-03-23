@@ -12,7 +12,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  Image,
   Dimensions,
 } from "react-native";
 
@@ -24,6 +23,7 @@ const initialState = {
 export default function LoginScreen({ navigation }) {
   const [state, setState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [secureText, setSecureText] = useState(true);
 
   const [dimensions, setDimensions] = useState(
     Dimensions.get("window").width - 16 * 2
@@ -50,6 +50,11 @@ export default function LoginScreen({ navigation }) {
     }
     console.log(state);
     keyboardHide();
+    navigation.navigate("Home", {
+      screen: "ProfileScreen" && "PostsScreen",
+      params: { email },
+    });
+    setSecureText(true);
     setState(initialState);
   };
 
@@ -73,14 +78,6 @@ export default function LoginScreen({ navigation }) {
                     width: dimensions,
                   }}
                 >
-                  <View style={styles.wrapImg}>
-                    <View style={styles.avatar}></View>
-                    <Image
-                      style={styles.icon}
-                      source={require("../../../assets/image/add-image.png")}
-                    />
-                  </View>
-
                   <View>
                     <Text style={styles.title}>Войти</Text>
                   </View>
@@ -103,7 +100,7 @@ export default function LoginScreen({ navigation }) {
                     <TextInput
                       style={styles.input}
                       textAlign={"left"}
-                      secureTextEntry={true}
+                      secureTextEntry={secureText}
                       placeholder={"Пароль"}
                       onFocus={() => setIsShowKeyboard(true)}
                       value={state.password}
@@ -114,7 +111,14 @@ export default function LoginScreen({ navigation }) {
                         }))
                       }
                     />
-                    <Text style={styles.password}>Показать</Text>
+                    <Text
+                      style={styles.password}
+                      onPress={() =>
+                        secureText ? setSecureText(false) : setSecureText(true)
+                      }
+                    >
+                      Показать
+                    </Text>
                   </View>
                   <TouchableOpacity
                     style={styles.btn}
@@ -167,30 +171,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   form: {
-    paddingTop: 92,
+    paddingTop: 32,
     position: "relative",
     justifyContent: "center",
   },
   wrapImg: {
     position: "relative",
   },
-  avatar: {
-    position: "absolute",
-    width: 120,
-    height: 120,
-    backgroundColor: "#F6F6F6",
-    top: -150,
-    borderRadius: 16,
-    marginStart: 136,
-  },
-  icon: {
-    zIndex: 2,
-    position: "absolute",
-    width: 25,
-    height: 25,
-    top: -70,
-    marginStart: 240,
-  },
+
   title: {
     marginBottom: 32,
     textAlign: "center",
@@ -207,7 +195,7 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 16,
     fontSize: 16,
-    fontFamily: "Roboto-Regulat",
+    fontFamily: "Roboto-Regular",
     color: "#212121",
   },
   password: {
@@ -226,12 +214,12 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 16,
     color: "#fff",
-    fontFamily: "Roboto-Regulat",
+    fontFamily: "Roboto-Regular",
   },
   text: {
     color: "#1B4371",
     marginTop: 16,
     fontSize: 16,
-    fontFamily: "Roboto-Regulat",
+    fontFamily: "Roboto-Regular",
   },
 });
